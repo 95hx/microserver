@@ -1,0 +1,31 @@
+server:
+  port: 8001
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: h2
+#    schema: classpath:schema.sql
+    schema: classpath:data.sql
+  application:
+    name: user-provider
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+eureka:
+  client:
+    service-url: {"http://localhost8761/eureka/"}
+  instance:
+    #ip 注册 非hostname
+    prefer-ip-address: true
+    metadata-map:
+      meta1: test
+      meta2: test
+      meta3: test
