@@ -1,3 +1,11 @@
-eureka:register and find
-ribbon:client balance
-feign:declare api call
+eureka:
+    register and find
+ribbon:
+    client balance
+feign:
+    declare api call
+hystrix:
+    outtime disconnect give default value
+    in actuator /health can see hystrix status
+    3 status open halfOpen close
+
