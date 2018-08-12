@@ -25,14 +25,6 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User findById(@PathVariable Long id) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            UserDetails user = (UserDetails) principal;
-            Collection<? extends GrantedAuthority> collection = user.getAuthorities();
-            collection.forEach(ga->{
-                LOGGER.error("{}:{}",ga.getAuthority(),user.getUsername());
-            });
-        }
         return this.userRepository.findById(id).get();
     }
 }
