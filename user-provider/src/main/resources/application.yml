@@ -33,3 +33,5 @@ eureka:
       meta3: test
 #logging:
 #  level: off
+#  level:
+#    cn.luv2code.sample.userprovider.controller.UserController: INFO
