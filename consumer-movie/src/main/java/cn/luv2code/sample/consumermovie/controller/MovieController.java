@@ -1,6 +1,7 @@
 package cn.luv2code.sample.consumermovie.controller;
 
 import cn.luv2code.sample.consumermovie.entity.User;
+import cn.luv2code.sample.consumermovie.feign.UserFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.ServiceInstance;
@@ -23,10 +24,12 @@ public class MovieController {
     private RestTemplate restTemplate;
     @Resource
     private DiscoveryClient discoveryClient;
+    @Resource
+    private UserFeignClient userFeignClient;
 
     @GetMapping("user/{id}")
-    public User findById(@PathVariable Long id) {
-        return this.restTemplate.getForObject("http://user-provider/user/" + id, User.class);
+    public User findById(@PathVariable("id") Long id) {
+        return this.userFeignClient.findById(id);
     }
     @GetMapping("/user-instance")
     public List<ServiceInstance> showInfo() {
