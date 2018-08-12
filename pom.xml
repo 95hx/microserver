@@ -11,6 +11,7 @@
         <module>consumer-movie</module>
         <module>eureka-server</module>
         <module>user-provider</module>
+        <module>gateway-zuul</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
