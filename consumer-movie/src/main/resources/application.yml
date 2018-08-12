@@ -1,5 +1,6 @@
 server:
   port: 8002
+#actuator info can get
 info:
   app:
     name: @project.artifactId@
@@ -15,3 +16,7 @@ eureka:
 spring:
   application:
     name: movie-consumer
+user-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    listOfServers: localhost:8000,localhost:8001

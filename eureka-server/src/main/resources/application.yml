@@ -1,8 +1,11 @@
 spring:
   application:
     name: eureka-server
+#to get app props : http://localhost:8761/eureka/apps/user-provider
 eureka:
   client:
     service-url: {"http://localhost8761/eureka/"}
+#  server:
+#    enable-self-preservation: false
 server:
   port: 8761

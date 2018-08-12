@@ -12,6 +12,7 @@ spring:
     schema: classpath:data.sql
   application:
     name: user-provider
+#eureka  /info
 info:
   app:
     name: @project.artifactId@
@@ -23,9 +24,12 @@ eureka:
   client:
     service-url: {"http://localhost8761/eureka/"}
   instance:
-    #ip 注册 非hostname
+    #ip register not hostname
     prefer-ip-address: true
+    #discovery client data
     metadata-map:
       meta1: test
       meta2: test
       meta3: test
+#logging:
+#  level: off
