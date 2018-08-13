@@ -1,15 +1,13 @@
 <template>
   <div>
-    <button @click="go">test</button>
+    <el-button type="primary" icon="el-icon-search">选项一</el-button>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    go: function () {
-      this.$router.push({path: '/'})
-    }
+
   }
 }
 </script>
