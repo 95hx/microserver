@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" icon="el-icon-search">选项一</el-button>
+    <el-button type="primary" icon="el-icon-search">Test</el-button>
   </div>
 </template>
 

@@ -76,10 +76,10 @@
   export default {
     methods: {
       item1Click: function () {
-        this.$router.push({path: '/test'})
+        this.$router.push({path: '/'})
       },
       item2Click: function () {
-        this.$router.push({path: '/'})
+        this.$router.push({path: '/test'})
       }
     }
   };
