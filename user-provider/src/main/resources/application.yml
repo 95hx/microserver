@@ -15,11 +15,13 @@ spring:
 #eureka  /info
 info:
   app:
-    name: @project.artifactId@
-    encoding: @project.build.sourceEncoding@
-    java:
-      source: @java.version@
-      target: @java.version@
+    name: ${spring.application.name}
+#    @有时不能出现在yml
+#    name: @project.artifactId@
+#    encoding: @project.build.sourceEncoding@
+#    java:
+#      source: @java.version@
+#      target: @java.version@
 eureka:
   client:
     service-url: {"http://localhost8761/eureka/"}

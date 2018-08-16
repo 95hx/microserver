@@ -1,10 +1,12 @@
 package cn.luv2code.sample.userprovider.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class User {
+//in redis need Serializable
+public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
