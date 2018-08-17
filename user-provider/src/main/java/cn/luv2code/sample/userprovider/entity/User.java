@@ -1,6 +1,8 @@
 package cn.luv2code.sample.userprovider.entity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -8,7 +10,7 @@ import java.math.BigDecimal;
 //in redis need Serializable
 public class User implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Max(10)
     private Long id;
     @Column
     private String username;

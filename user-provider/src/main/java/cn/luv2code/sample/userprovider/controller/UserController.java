@@ -1,13 +1,17 @@
 package cn.luv2code.sample.userprovider.controller;
 
-import cn.luv2code.sample.userprovider.dao.UserRepository;
-import cn.luv2code.sample.userprovider.entity.User;
+import cn.luv2code.sample.userprovider.dto.UserDto;
+import cn.luv2code.sample.userprovider.service.UserService;
+import cn.luv2code.sample.userprovider.utils.Result;
+import cn.luv2code.sample.userprovider.utils.ResultStatus;
+import cn.luv2code.sample.userprovider.utils.ResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,14 +19,47 @@ import java.util.List;
 public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Resource
-    private UserRepository userRepository;
-    @Cacheable(cacheNames = "server.user.findById")
+    private UserService userService;
+    /**
+     * 查
+     */
     @GetMapping("/{id}")
-    public User findById(@PathVariable Long id) {
-        return this.userRepository.findById(id).get();
+    public Result<UserDto> findById(@PathVariable Long id) {
+       return ResultUtils.success(userService.findById(id));
     }
+    /**
+     * 查
+     */
     @GetMapping("/all")
-    public List<User> findAll() {
-        return this.userRepository.findAll();
+    public Result findAll() {
+        return ResultUtils.success(userService.findAll());
+    }
+
+    /**
+     * 增
+     */
+    @PostMapping("/add")
+    public Result add(@Valid  UserDto userDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return ResultUtils.error(ResultStatus.UNKNOWN_ERROR);
+        userService.save(userDto);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 删
+     */
+    @DeleteMapping("/{id}")
+    public Result deleteById(@PathVariable Long id) {
+        userService.deleteById(id);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 改
+     */
+    @PutMapping
+    public Result updateById(@Valid  UserDto userDto, BindingResult bindingResult) {
+        return add(userDto, bindingResult);
     }
 }

@@ -17,6 +17,8 @@
         <hystrix.version>1.4.5.RELEASE</hystrix.version>
         <feign.version>1.4.5.RELEASE</feign.version>
         <ribbon.version>1.4.5.RELEASE</ribbon.version>
+        <dozer.version>5.5.1</dozer.version>
+        <beanutils.version>1.9.3</beanutils.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>

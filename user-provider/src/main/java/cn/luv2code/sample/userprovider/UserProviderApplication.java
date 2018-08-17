@@ -9,7 +9,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 //@EnableDiscoveryClient
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCaching
 public class UserProviderApplication {
 
 	public static void main(String[] args) {
