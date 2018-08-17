@@ -7,6 +7,7 @@ import cn.luv2code.sample.userprovider.service.UserService;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 查
+     *
      * @param id 主键
      * @return UserDto
      */
@@ -47,6 +49,19 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public List<UserDto> findAll() {
         return userDao.findAll().stream()
+                .map(e -> dozerBeanMapper.map(e, UserDto.class))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 查
+     *
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<UserDto> findAll(Pageable pageable) {
+        return userDao.findAll(pageable).stream()
                 .map(e -> dozerBeanMapper.map(e, UserDto.class))
                 .collect(Collectors.toList());
     }

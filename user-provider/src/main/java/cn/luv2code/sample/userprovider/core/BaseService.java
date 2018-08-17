@@ -1,6 +1,9 @@
 package cn.luv2code.sample.userprovider.core;
 
+import org.springframework.data.domain.Pageable;
+
 import java.io.Serializable;
+import java.util.List;
 
 public interface BaseService<T,PK extends Serializable> {
     /**
@@ -10,6 +13,19 @@ public interface BaseService<T,PK extends Serializable> {
      * @return 实体
      */
     T findById(PK id);
+
+    /**
+     * 查
+     * @return list<T>
+     */
+    List<T> findAll();
+
+    /**
+     * 查
+     * @param pageable
+     * @return Page<T>
+     */
+    List<T> findAll(Pageable pageable);
 
     /**
      * 增
@@ -24,5 +40,4 @@ public interface BaseService<T,PK extends Serializable> {
      * @param id 主键
      */
     void deleteById(PK id);
-    // TODO: 2018/8/16 分页
 }

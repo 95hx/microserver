@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DozerBeanMapperBean {
     @Bean
-    public DozerBeanMapper GetDozerBeanMapper() {
+    public DozerBeanMapper getDozerBeanMapper() {
         return new DozerBeanMapper();
     }
 

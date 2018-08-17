@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 //in redis need Serializable
 public class User implements Serializable{
     @Id
-    @Max(10)
+    @Max(1000)
     private Long id;
     @Column
     private String username;
