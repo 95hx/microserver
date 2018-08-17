@@ -50,7 +50,7 @@ public class UserController {
      * 增
      */
     @PostMapping("/add")
-    public Result add(@Valid UserDto userDto, BindingResult bindingResult) {
+    public Result add(@Valid @RequestBody UserDto  userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return ResultUtils.error(ResultStatus.UNKNOWN_ERROR);
         userService.save(userDto);
@@ -70,7 +70,7 @@ public class UserController {
      * 改
      */
     @PutMapping
-    public Result updateById(@Valid UserDto userDto, BindingResult bindingResult) {
+    public Result updateById(@Valid @RequestBody UserDto userDto, BindingResult bindingResult) {
         return add(userDto, bindingResult);
     }
 }
