@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 @RestControllerAdvice
 public class ExceptionHandle {
     private final static Logger LOGGER = LoggerFactory.getLogger(ExceptionHandle.class);
-    @ExceptionHandler
+//    @ExceptionHandler
     public Result handle(Exception e) {
         LOGGER.error(e.getMessage());
         return ResultUtils.error(ResultStatus.UNKNOWN_ERROR);
