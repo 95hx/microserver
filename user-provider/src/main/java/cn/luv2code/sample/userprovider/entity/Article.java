@@ -4,22 +4,19 @@ import cn.luv2code.sample.userprovider.core.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
-
+import javax.persistence.*;
+import java.util.Date;
+@Entity
 public class Article  extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp",updatable = false)
     @CreationTimestamp
-    private LocalDateTime createTime;
+    private Date createTime;
+    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp")
     @UpdateTimestamp
-    @Column
-    private LocalDateTime updateTime;
+    private Date updateTime;
     @Column
     private String title;
     @Column
@@ -40,22 +37,22 @@ public class Article  extends BaseEntity {
     }
 
     @Override
-    public LocalDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
     @Override
-    public void setCreateTime(LocalDateTime createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Override
-    public LocalDateTime getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
     @Override
-    public void setUpdateTime(LocalDateTime updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

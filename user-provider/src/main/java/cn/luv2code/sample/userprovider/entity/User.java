@@ -1,13 +1,13 @@
 package cn.luv2code.sample.userprovider.entity;
 
 import cn.luv2code.sample.userprovider.core.BaseEntity;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 //in redis need Serializable
@@ -26,12 +26,12 @@ public class User extends BaseEntity {
     @Max(1000)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    @CreatedDate
-    private LocalDateTime createTime;
-    @LastModifiedDate
-    @Column
-    private LocalDateTime updateTime;
+    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp",updatable = false)
+    @CreationTimestamp
+    private Date createTime;
+    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp")
+    @UpdateTimestamp
+    private Date updateTime;
 
     @Override
     public Long getId() {
@@ -76,22 +76,22 @@ public class User extends BaseEntity {
     }
 
     @Override
-    public LocalDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
     @Override
-    public void setCreateTime(LocalDateTime createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Override
-    public LocalDateTime getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
     @Override
-    public void setUpdateTime(LocalDateTime updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 }

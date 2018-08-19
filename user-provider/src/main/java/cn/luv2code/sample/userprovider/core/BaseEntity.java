@@ -1,7 +1,7 @@
 package cn.luv2code.sample.userprovider.core;
 
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public abstract class BaseEntity implements java.io.Serializable {
 
@@ -9,11 +9,11 @@ public abstract class BaseEntity implements java.io.Serializable {
 
     public abstract void setId(Long id);
 
-    public abstract LocalDateTime getCreateTime();
+    public abstract Date getCreateTime();
 
-    public abstract void setCreateTime(LocalDateTime createTime);
+    public abstract void setCreateTime(Date createTime);
 
-    public abstract LocalDateTime getUpdateTime();
+    public abstract Date getUpdateTime();
 
-    public abstract void setUpdateTime(LocalDateTime updateTime);
+    public abstract void setUpdateTime(Date updateTime);
 }
