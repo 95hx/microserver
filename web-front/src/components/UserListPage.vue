@@ -76,13 +76,20 @@
     methods: {
 
       editClick: function (row) {
-        this.dialogFormVisible = true
-
-        this.form = JSON.parse(JSON.stringify(row));
         this.title = '编辑用户'
+
+        this.dialogFormVisible = true
+        this.form = JSON.parse(JSON.stringify(row));
       },
 
       addClick: function () {
+        this.title = '保存用户'
+        this.form = {
+          id: '',
+          name: '',
+          age: '',
+          username: ''
+        }
         this.dialogFormVisible = true
       },
 

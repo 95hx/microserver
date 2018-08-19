@@ -1,0 +1,9 @@
+spring:
+  datasource:
+#    schema: classpath:schema.sql
+#    schema: classpath:data.sql
+    hikari:
+      username: root
+      password:
+      jdbc-url: jdbc:mysql://localhost:3306/blog?characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
