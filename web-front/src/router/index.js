@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Test from '@/components/Test'
-
+import UserList from '@/components/UserListPage'
+import ArticleList from '@/components/ArticleListPage'
+import {get_list_user_page_path,get_list_article_page_path} from './path'
 Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: get_list_user_page_path(),
+      name: 'user',
+      component: UserList
     },
     {
-      path: '/test',
-      name: 'test',
-      component: Test
+      path: get_list_article_page_path(),
+      name: 'article',
+      component: ArticleList
     }
   ]
 })

@@ -7,8 +7,8 @@
             <template slot="title"><i class="el-icon-message"></i>导航一</template>
             <el-menu-item-group>
               <template slot="title">分组一</template>
-              <el-menu-item index="1-1" @click="item1Click">选项1</el-menu-item>
-              <el-menu-item index="1-2" @click="item2Click">选项2</el-menu-item>
+              <el-menu-item index="1-1" @click="userItemClick">用户</el-menu-item>
+              <el-menu-item index="1-2" @click="articleItemClick">文章</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
               <el-menu-item index="1-3">选项3</el-menu-item>
@@ -56,12 +56,12 @@
           <el-dropdown>
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>查看</el-dropdown-item>
-              <el-dropdown-item>新增</el-dropdown-item>
-              <el-dropdown-item>删除</el-dropdown-item>
+              <el-dropdown-item>设置</el-dropdown-item>
+              <el-dropdown-item>设置</el-dropdown-item>
+              <el-dropdown-item>设置</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王小虎</span>
+          <span>DB.Cooper</span>
         </el-header>
 
         <el-main>
@@ -73,13 +73,14 @@
 </template>
 
 <script>
+  import {get_list_article_page_path,get_list_user_page_path} from './router/path'
   export default {
     methods: {
-      item1Click: function () {
-        this.$router.push({path: '/'})
+      userItemClick: function () {
+        this.$router.push({path: get_list_user_page_path()})
       },
-      item2Click: function () {
-        this.$router.push({path: '/test'})
+      articleItemClick: function () {
+        this.$router.push({path: get_list_article_page_path()})
       }
     }
   };
