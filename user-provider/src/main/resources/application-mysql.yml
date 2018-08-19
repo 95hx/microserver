@@ -2,6 +2,7 @@ spring:
   datasource:
 #    schema: classpath:schema.sql
 #    schema: classpath:data.sql
+#    创建表需指定utf-8 防止乱码
     hikari:
       username: root
       password:
