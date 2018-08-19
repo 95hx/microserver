@@ -12,6 +12,12 @@ spring:
     schema: classpath:data.sql
   application:
     name: user-provider
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
 #eureka  /info
 info:
   app:

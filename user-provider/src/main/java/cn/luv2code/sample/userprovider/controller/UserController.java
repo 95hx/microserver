@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -47,7 +46,7 @@ public class UserController {
     }
 
     /**
-     * 增
+     * 增/更新
      */
     @PostMapping("/add")
     public Result add(@Valid @RequestBody UserDto  userDto, BindingResult bindingResult) {
@@ -64,13 +63,5 @@ public class UserController {
     public Result deleteById(@PathVariable Long id) {
         userService.deleteById(id);
         return ResultUtils.success();
-    }
-
-    /**
-     * 改
-     */
-    @PutMapping
-    public Result updateById(@Valid @RequestBody UserDto userDto, BindingResult bindingResult) {
-        return add(userDto, bindingResult);
     }
 }
