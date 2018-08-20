@@ -1,5 +1,6 @@
 package cn.luv2code.sample.userprovider.controller;
 
+import cn.luv2code.sample.userprovider.annotation.TargetDataSource;
 import cn.luv2code.sample.userprovider.dto.UserDto;
 import cn.luv2code.sample.userprovider.service.UserService;
 import cn.luv2code.sample.userprovider.utils.Result;
@@ -24,6 +25,7 @@ public class UserController {
     /**
      * 查
      */
+    @TargetDataSource("ds1")
     @GetMapping("/{id}")
     public Result<UserDto> findById(@PathVariable Long id) {
         return ResultUtils.success(userService.findById(id));
@@ -32,6 +34,7 @@ public class UserController {
     /**
      * 查
      */
+    @TargetDataSource("ds2")
     @GetMapping("/all")
     public Result findAll() {
         return ResultUtils.success(userService.findAll());
