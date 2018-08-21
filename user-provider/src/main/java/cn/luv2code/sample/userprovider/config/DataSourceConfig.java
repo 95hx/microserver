@@ -35,27 +35,27 @@ public class DataSourceConfig {
     @Value("${spring.datasource.secondary.driver-class-name}")
     private String driverClassName2;
 
-    @Value("${spring.datasource.thirdary.url}")
-    private String dbUrl3;
-
-    @Value("${spring.datasource.thirdary.username}")
-    private String username3;
-
-    @Value("${spring.datasource.thirdary.password}")
-    private String password3;
-
-    @Value("${spring.datasource.thirdary.driver-class-name}")
-    private String driverClassName3;
 
 
 
-    @Bean(name = "thirdDataSource")
-    @Qualifier("thirdDataSource")
-    public HikariDataSource thirdDataSource() {
+
+    @Bean(name = "primaryDataSource")
+    @Qualifier("primaryDataSource")
+    public HikariDataSource primaryDataSource() {
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(dbUrl3);
-        dataSource.setUsername(username3);
-        dataSource.setPassword(password3);
+        dataSource.setJdbcUrl(dbUrl1);
+        dataSource.setUsername(username1);
+        dataSource.setPassword(password1);
+        return dataSource;
+    }
+
+    @Bean(name = "secondaryDataSource")
+    @Qualifier("secondaryDataSource")
+    public HikariDataSource secondaryDataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl(dbUrl2);
+        dataSource.setUsername(username2);
+        dataSource.setPassword(password2);
         return dataSource;
     }
 

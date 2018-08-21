@@ -22,18 +22,18 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactoryThird",
-        transactionManagerRef = "transactionManagerThird",
-        basePackages = {"cn.luv2code.sample.userprovider.dao"})
-public class ThirdConfig {
+        entityManagerFactoryRef = "entityManagerFactoryPrimary",
+        transactionManagerRef = "transactionManagerPrimary",
+        basePackages = {"cn.luv2code.sample.userprovider.dao.primary"})
+public class PrimaryConfig {
 
     @Resource
-    @Qualifier("thirdDataSource")
-    private HikariDataSource thirdDataSource;
+    @Qualifier("primaryDataSource")
+    private HikariDataSource primaryDataSource;
 
-    @Bean(name = "entityManagerThird")
+    @Bean(name = "entityManagerPrimary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactoryThird(builder).getObject().createEntityManager();
+        return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
     }
 
     @Resource
@@ -46,18 +46,18 @@ public class ThirdConfig {
     /**
      * 设置实体类所在位置
      */
-    @Bean(name = "entityManagerFactoryThird")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryThird(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "entityManagerFactoryPrimary")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(thirdDataSource)
-                .packages("cn.luv2code.sample.userprovider.entity")
-                .persistenceUnit("thirdPersistenceUnit")
+                .dataSource(primaryDataSource)
+                .packages("cn.luv2code.sample.userprovider.entity.primary")
+                .persistenceUnit("primaryPersistenceUnit")
                 .properties(getVendorProperties())
                 .build();
     }
 
-    @Bean(name = "transactionManagerThird")
-    public PlatformTransactionManager transactionManagerThird(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryThird(builder).getObject());
+    @Bean(name = "transactionManagerPrimary")
+    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
     }
 }

@@ -1,4 +1,4 @@
-package cn.luv2code.sample.userprovider.entity;
+package cn.luv2code.sample.userprovider.entity.primary;
 
 import cn.luv2code.sample.userprovider.core.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;

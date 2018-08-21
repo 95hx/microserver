@@ -1,8 +1,8 @@
 package cn.luv2code.sample.userprovider.service.impl;
 
-import cn.luv2code.sample.userprovider.dao.UserDao;
+import cn.luv2code.sample.userprovider.dao.primary.UserDao;
 import cn.luv2code.sample.userprovider.dto.UserDto;
-import cn.luv2code.sample.userprovider.entity.User;
+import cn.luv2code.sample.userprovider.entity.primary.User;
 import cn.luv2code.sample.userprovider.service.UserService;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.BeanUtils;
