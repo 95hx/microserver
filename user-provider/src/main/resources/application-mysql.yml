@@ -3,8 +3,19 @@ spring:
 #    schema: classpath:schema.sql
 #    schema: classpath:data.sql
 #    创建表需指定utf-8 防止乱码
-    hikari:
+    primary:
+      url: jdbc:mysql://localhost:3306/blog1?characterEncoding=utf8
       username: root
-      password:
-      jdbc-url: jdbc:mysql://localhost:3306/blog?characterEncoding=utf8&useSSL=false
+      password: 123456
       driver-class-name: com.mysql.jdbc.Driver
+    secondary:
+      url: jdbc:mysql://localhost:3306/blog2?characterEncoding=utf8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    thirdary:
+      url: jdbc:mysql://localhost:3306/blog3?characterEncoding=utf8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+
