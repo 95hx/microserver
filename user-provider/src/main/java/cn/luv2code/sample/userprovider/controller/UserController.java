@@ -1,5 +1,6 @@
 package cn.luv2code.sample.userprovider.controller;
 
+import cn.luv2code.sample.userprovider.annotation.TargetDataSource;
 import cn.luv2code.sample.userprovider.dto.UserDto;
 import cn.luv2code.sample.userprovider.service.UserService;
 import cn.luv2code.sample.userprovider.utils.Result;
@@ -40,9 +41,9 @@ public class UserController {
     /**
      * 查
      */
-    @GetMapping("/all/{page}/{size}")
+    @GetMapping("/{page}/{size}")
     public Result findPageAll(@PathVariable Integer page, @PathVariable Integer size) {
-        return ResultUtils.success(userService.findAll(new PageRequest(page+1, size)));
+        return ResultUtils.success(userService.findAll(new PageRequest(page-1, size)));
     }
 
     /**
