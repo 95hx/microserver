@@ -55,7 +55,10 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         Map<String, Object> dsMap;
         dsMap = (LinkedHashMap) Binder.get(env)
                 .bind("custom.datasource", Bindable.mapOf(String.class, String.class))
-                .get();
+                .orElse(null);
+        if (dsMap == null) {
+            return;
+        }
         String dsPrefixs = (String) dsMap.get("names");
         String[] names = dsPrefixs.split(",");
         for (String name : names) {
