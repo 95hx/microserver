@@ -40,16 +40,16 @@ public class ArticleController {
     /**
      * 查
      */
-    @GetMapping("/all/{page}/{size}")
+    @GetMapping("/{page}/{size}")
     public Result findPageAll(@PathVariable Integer page, @PathVariable Integer size) {
-        return ResultUtils.success(articleService.findAll(new PageRequest(page+1, size)));
+        return ResultUtils.success(articleService.findAll(new PageRequest(page - 1, size)));
     }
 
     /**
      * 增/更新
      */
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody ArticleDto  articleDto, BindingResult bindingResult) {
+    public Result add(@Valid @RequestBody ArticleDto articleDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return ResultUtils.error(ResultStatus.UNKNOWN_ERROR);
         articleService.save(articleDto);

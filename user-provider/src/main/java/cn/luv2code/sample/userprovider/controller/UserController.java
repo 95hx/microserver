@@ -43,9 +43,9 @@ public class UserController {
     /**
      * 查
      */
-    @GetMapping("/all/{page}/{size}")
+    @GetMapping("/{page}/{size}")
     public Result findPageAll(@PathVariable Integer page, @PathVariable Integer size) {
-        return ResultUtils.success(userService.findAll(new PageRequest(page+1, size)));
+        return ResultUtils.success(userService.findAll(new PageRequest(page-1, size)));
     }
 
     /**
