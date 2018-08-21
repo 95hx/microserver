@@ -25,7 +25,6 @@ public class UserController {
     /**
      * 查
      */
-    @TargetDataSource("ds1")
     @GetMapping("/{id}")
     public Result<UserDto> findById(@PathVariable Long id) {
         return ResultUtils.success(userService.findById(id));
@@ -34,7 +33,6 @@ public class UserController {
     /**
      * 查
      */
-    @TargetDataSource("ds2")
     @GetMapping("/all")
     public Result findAll() {
         return ResultUtils.success(userService.findAll());
