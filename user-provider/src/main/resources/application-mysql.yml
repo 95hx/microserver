@@ -12,11 +12,11 @@ custom:
     names: ds1,ds2
     ds1:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://:3306/db_cooper1?characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://118.25.49.50:3306/db_cooper1?characterEncoding=utf8&useSSL=false
       username: root
       password: 123456
     ds2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://:3306/db_cooper2?characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://118.25.49.50:3306/db_cooper2?characterEncoding=utf8&useSSL=false
       username: root
       password: 123456
