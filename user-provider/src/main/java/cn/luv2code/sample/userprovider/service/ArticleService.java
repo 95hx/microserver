@@ -9,4 +9,5 @@ import java.util.List;
 public interface ArticleService extends BaseService<ArticleDto,Long> {
     List<ArticleDto> findAll();
     List<ArticleDto> findAll(Pageable pageable);
+    List<ArticleDto> findAllByUserId(Pageable pageable,Long userId);
 }

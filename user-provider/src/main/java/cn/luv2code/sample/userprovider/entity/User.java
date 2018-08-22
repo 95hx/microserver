@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 //in redis need Serializable
@@ -21,18 +22,21 @@ public class User extends BaseEntity {
     private Integer age;
     @Column
     private BigDecimal balance;
+    @Column
+    @OneToMany(targetEntity = Article.class)
+    private List<Article> articles;
 
     @Id
     @Max(1000)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(insertable = false,columnDefinition = "timestamp default current_timestamp",updatable = false)
     @CreationTimestamp
     private Date createTime;
     @Column(insertable = false,columnDefinition = "timestamp default current_timestamp")
     @UpdateTimestamp
     private Date updateTime;
-
     @Override
     public Long getId() {
         return id;
@@ -41,6 +45,14 @@ public class User extends BaseEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     public String getUsername() {

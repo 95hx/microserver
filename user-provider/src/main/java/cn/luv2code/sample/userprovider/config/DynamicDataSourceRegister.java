@@ -77,7 +77,6 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     /**
      * 创建datasource.
      */
-    @SuppressWarnings("unchecked")
     public HikariDataSource buildDataSource(Map<String, Object> dsMap) {
 
         String driverClassName = dsMap.get("driver-class-name").toString();

@@ -55,6 +55,20 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 查
+     * @param pageable
+     * @param userId
+     * @return List<ArticleDto>
+     */
+    @Transactional(readOnly = false)
+    @Override
+    public List<ArticleDto> findAllByUserId(Pageable pageable, Long userId) {
+        return articleDao.findAllByUserId(pageable,userId).stream()
+                .map(e->dozerBeanMapper.map(e,ArticleDto.class))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 查
      *
      * @param pageable
      * @return
@@ -87,6 +101,4 @@ public class ArticleServiceImpl implements ArticleService {
     public void deleteById(Long id) {
         articleDao.deleteById(id);
     }
-
-
 }
