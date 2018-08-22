@@ -1,0 +1,16 @@
+spring:
+  datasource:
+#    schema: classpath:schema.sql
+#    schema: classpath:data.sql
+#    创建表需指定utf-8 防止乱码
+    username: root
+    url: jdbc:mysql://localhost:3306/blog?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer.group-id: testGroup
+    consumer.auto-offset-reset: earliest
+    consumer.value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    consumer.properties.spring.json.trusted.packages: cn.luv2code.sample.userprovider.kafka
+    producer.value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
