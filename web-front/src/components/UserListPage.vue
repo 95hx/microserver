@@ -56,8 +56,8 @@
       };
 
       return {
-        tableData: Array(20).fill(item),
         dialogFormVisible: false,
+        tableData: Array(20).fill(item),
         formLabelWidth: '120px',
         form: {
           id: '',

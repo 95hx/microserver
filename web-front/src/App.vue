@@ -1,5 +1,23 @@
 <template>
   <div>
+    <el-dialog :title="title" :visible.sync="dialogArticleVisible" >
+      <el-form :model="form">
+        <el-form-item label="账号" :label-width="formLabelWidth">
+          <el-input v-model="form.username" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名" :label-width="formLabelWidth">
+          <el-input v-model="form.name" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="年龄" :label-width="formLabelWidth">
+          <el-input v-model="form.age" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" >确 定</el-button>
+      </div>
+    </el-dialog>
+
     <el-container style="height: 710px; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu :default-openeds="['1', '3']">
@@ -53,6 +71,7 @@
 
       <el-container>
         <el-header style="text-align: right; font-size: 12px">
+          <el-button round type="success" @click='writeArticleClick'>写文章</el-button>
           <el-dropdown>
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
@@ -73,15 +92,33 @@
 </template>
 
 <script>
-  import {get_list_article_page_path,get_list_user_page_path} from './router/path'
+  import {get_list_article_page_path, get_list_user_page_path} from './router/path'
+
   export default {
+    data() {
+      return {
+        dialogArticleVisible: false,
+        form: {
+          id: '',
+          name: '',
+          age: '',
+          username: ''
+        },
+        formLabelWidth: '120px',
+        title: '添加用户'
+      }
+
+    },
     methods: {
       userItemClick: function () {
         this.$router.push({path: get_list_user_page_path()})
       },
       articleItemClick: function () {
         this.$router.push({path: get_list_article_page_path()})
-      }
+      },
+      writeArticleClick: function () {
+        this.dialogArticleVisible = true
+      },
     }
   };
 </script>

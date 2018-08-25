@@ -7,8 +7,6 @@ import cn.luv2code.sample.userprovider.utils.ResultStatus;
 import cn.luv2code.sample.userprovider.utils.ResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +20,12 @@ public class ArticleController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
     @Resource
     private ArticleService articleService;
-    @Resource
-    ApplicationRunner runner;
+
     /**
      * 查
      */
     @GetMapping("/{id}")
-    public Result<ArticleDto> findById(@PathVariable Long id) throws Exception {
-        String[] args={"1","2","3"};
-        runner.run(new DefaultApplicationArguments(args));
+    public Result<ArticleDto> findById(@PathVariable Long id) {
         return ResultUtils.success(articleService.findById(id));
     }
 
