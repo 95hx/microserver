@@ -1,4 +1,4 @@
-package cn.luv2code.sample.userprovider.config;
+package cn.luv2code.sample.userprovider.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
