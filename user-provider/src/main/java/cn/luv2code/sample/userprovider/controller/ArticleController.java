@@ -1,6 +1,8 @@
 package cn.luv2code.sample.userprovider.controller;
 
 import cn.luv2code.sample.userprovider.dto.ArticleDto;
+import cn.luv2code.sample.userprovider.kafka.Producer;
+import cn.luv2code.sample.userprovider.kafka.SampleMessage;
 import cn.luv2code.sample.userprovider.service.ArticleService;
 import cn.luv2code.sample.userprovider.utils.Result;
 import cn.luv2code.sample.userprovider.utils.ResultStatus;
@@ -23,14 +25,13 @@ public class ArticleController {
     @Resource
     private ArticleService articleService;
     @Resource
-    ApplicationRunner runner;
+    private Producer producer;
     /**
      * 查
      */
     @GetMapping("/{id}")
     public Result<ArticleDto> findById(@PathVariable Long id) throws Exception {
-        String[] args={"1","2","3"};
-        runner.run(new DefaultApplicationArguments(args));
+        producer.send(new SampleMessage(id.intValue(),"msg"));
         return ResultUtils.success(articleService.findById(id));
     }
 
