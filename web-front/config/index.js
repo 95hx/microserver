@@ -8,13 +8,14 @@ module.exports = {
   dev: {
 
     // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: 'static',//静态资源文件夹
+    assetsPublicPath: '/',//发布路径
     proxyTable: {
-      '/api': {
+      '/api': {//匹配所有/api开头的路径
         target: 'http://localhost:8001',
-        changeOrigin: true,
-        pathRewrite: {
+        changeOrigin: true,// 支持跨域
+        // secure: false,  // 如果是https接口，需要配置这个参数
+        pathRewrite: {//重写路径
           '^/api': ''
         }
       }},
