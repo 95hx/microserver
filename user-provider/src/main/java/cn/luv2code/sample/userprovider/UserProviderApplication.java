@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Import;
 //@EnableDiscoveryClient
 @EnableEurekaClient
 @SpringBootApplication
+//导入DynamicDataSourceRegister到容器
 @Import({DynamicDataSourceRegister.class})
 public class UserProviderApplication  extends SpringBootServletInitializer {
 

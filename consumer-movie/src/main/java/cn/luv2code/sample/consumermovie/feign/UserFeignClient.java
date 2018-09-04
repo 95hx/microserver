@@ -1,7 +1,7 @@
 package cn.luv2code.sample.consumermovie.feign;
 
-import cn.luv2code.sample.consumermovie.entity.User;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import cn.luv2code.sample.userprovider.utils.Result;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "user-provider")
 public interface UserFeignClient {
     @GetMapping("user/{id}")
-    User findById(@PathVariable("id") Long id);
+    Result findById(@PathVariable("id") Long id);
 
 //    /**
 //     * @param id

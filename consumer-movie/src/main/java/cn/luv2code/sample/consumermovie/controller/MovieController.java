@@ -2,6 +2,7 @@ package cn.luv2code.sample.consumermovie.controller;
 
 import cn.luv2code.sample.consumermovie.entity.User;
 import cn.luv2code.sample.consumermovie.feign.UserFeignClient;
+import cn.luv2code.sample.userprovider.utils.Result;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,26 +31,42 @@ public class MovieController {
 
     @HystrixCommand(fallbackMethod = "findByIdFallback")
     @GetMapping("user/{id}")
-    public User findById(@PathVariable("id") Long id) {
+    public Result findById(@PathVariable("id") Long id) {
         return this.userFeignClient.findById(id);
     }
 
-     public User findByIdFallback(Long id) {
+    /**
+     * when execute hystrix
+     * @param id
+     * @return default value
+     */
+     public Result findByIdFallback(Long id) {
+         Result result = new Result();
          User user = new User();
          user.setId(-1L);
          user.setName("default");
-         return user;
+         result.setData(user);
+         LOGGER.error(user.toString());
+         return result;
     }
+
+    /**
+     *
+     * @return details of user-provider
+     */
     @GetMapping("/user-instance")
     public List<ServiceInstance> showInfo() {
         //conclude metadata in user-provider yml
         return this.discoveryClient.getInstances("user-provider");
     }
 
+    /**
+     * @return RibbonServer{serviceId='user-provider', server=192.168.27.103:8001, secure=false, metadata=vlsi.utils.CompactHashMap@35e0a7eb}
+     */
     @GetMapping("/user-instance-log")
-    public Integer showInfoLog() {
+    public String showInfoLog() {
         ServiceInstance serviceInstance = this.loadBalancerClient.choose("user-provider");
         LOGGER.error("{}:{}:{}", serviceInstance.getPort(), serviceInstance.getHost(), serviceInstance.getServiceId());
-        return serviceInstance.getPort();
+        return serviceInstance.toString();
     }
 }
