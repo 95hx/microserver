@@ -2,7 +2,7 @@
   <div>
 
     <!--添加文章按钮-->
-    <el-button type="primary" icon="el-icon-search" @click="addArticleClick">添加</el-button>
+    <el-button type="primary" icon="el-icon-search" @click="addArticleClick">detail</el-button>
 
     <!--添加 文章dialog-->
     <el-dialog :title="title" :visible.sync="dialogFormVisible" :before-close="handleArticleClose">
@@ -26,7 +26,7 @@
         <el-row :gutter="20" v-for="item in tableData">
           <el-col :span="16">
             <div class="grid-content bg-purple">
-              <el-button @click="articleDetailClick">{{item.title}}</el-button>
+              <a href="https://www.baidu.com">{{item.title}}</a>
               <p>{{item.content}}</p>
               <div>
                 <a href="https://www.baidu.com">{{item.readCount}}</a>
@@ -46,11 +46,10 @@
 </template>
 
 <script>
-  import {get_article_detail_page_path} from '../router/path'
   export default {
     methods: {
       articleDetailClick: function () {
-        this.$router.push({path: get_article_detail_page_path()})
+        this.$router.push({path: get_list_user_page_path()})
       },
       handleArticleClose(done) {
         this.$confirm('确认关闭？')
