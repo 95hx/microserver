@@ -62,6 +62,12 @@
             <version>${starter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>cn.luv2code.sample</groupId>
+            <artifactId>user-provider</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
