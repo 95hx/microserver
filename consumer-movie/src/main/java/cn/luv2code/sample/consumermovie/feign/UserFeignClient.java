@@ -1,6 +1,6 @@
 package cn.luv2code.sample.consumermovie.feign;
 
-import cn.luv2code.sample.userprovider.utils.Result;
+import cn.luv2code.sample.consumermovie.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -10,7 +10,6 @@
 		<groupId>cn.luv2code.sample</groupId>
 		<artifactId>micro-server-demo</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<name>gateway-zuul</name>
 	<description>Demo project for Spring Boot</description>

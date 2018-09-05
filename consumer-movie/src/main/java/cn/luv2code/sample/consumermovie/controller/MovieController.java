@@ -2,7 +2,7 @@ package cn.luv2code.sample.consumermovie.controller;
 
 import cn.luv2code.sample.consumermovie.entity.User;
 import cn.luv2code.sample.consumermovie.feign.UserFeignClient;
-import cn.luv2code.sample.userprovider.utils.Result;
+import cn.luv2code.sample.consumermovie.utils.Result;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
