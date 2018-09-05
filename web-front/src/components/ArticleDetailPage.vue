@@ -1,136 +1,55 @@
 <template>
   <div>
-
-
-
-    <!--添加 文章dialog-->
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" :before-close="handleArticleClose">
-      <el-form :model="form">
-        <el-form-item label="标题" :label-width="formLabelWidth">
-          <el-input v-model="form.title" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="内容" :label-width="formLabelWidth">
-          <el-input v-model="form.content" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="saveArticleClick">确 定</el-button>
-      </div>
-    </el-dialog>
-
-    <!--table column-->
     <el-container>
-      <el-footer>
-        <el-row :gutter="20" v-for="item in tableData">
-          <el-col :span="16">
-            <div class="grid-content bg-purple">
-              <a href="https://www.baidu.com">{{item.title}}</a>
-              <p>{{item.content}}</p>
-              <div>
-                <a href="https://www.baidu.com">{{item.readCount}}</a>
-                <a href="https://www.baidu.com">{{item.thumbsUpCount}}</a>
-                <span>{{item.createTime}}</span>
-              </div>
-            </div>
-          </el-col>
-          <el-col :span="8">
-            <div class="grid-content bg-purple">图片</div>
-          </el-col>
-        </el-row>
+      <el-header>{{item.title}}</el-header>
 
-      </el-footer>
+      <el-main>{{item.content}}</el-main>
+      <el-footer>{{item}}</el-footer>
+
     </el-container>
+
   </div>
 </template>
 
 <script>
   export default {
-    methods: {
-      articleDetailClick: function () {
-        this.$router.push({path: get_list_user_page_path()})
-      },
-      handleArticleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            console.log("close")
-            done();
-
-          })
-          .catch(_ => {
-            console.log("close")
-          });
-      },
-      saveArticleClick: function(){
-        this.axios.post('/api/article/add', {
-          id: this.form.id,
-          title: this.form.title,
-          content: this.form.content,
-        }).then(response => {
-          if (response.data.code === 200) {
-            console.log("success save")
-            this.refreshArticle()
-          } else {
-            console.log("http code not 200")
-          }
-        })
-        this.dialogFormVisible = false
-      },
-      refreshArticle: function () {
-        this.axios.get('/api/article/all').then(response => {
-          if (response.data.code === 200) {
-            this.tableData = response.data.data;
-          } else {
-            console.log("http code not 200");
-          }
-        })
-      },
-      addArticleClick:function () {
-        this.title = '保存文章'
-        this.form = {
-          id: '',
-          title: '',
-          content: '',
-          readCount: '',
-          thumbsUpCount: '',
-          userId: ''
-        }
-        this.dialogFormVisible = true
-      },
-    },
-    created: function () {
-      this.refreshArticle();
-      console.log('hehe'+this.$route.params.articleId)
-    },
     data() {
       return {
-        articleId: this.$route.params.articleId,
-        tableData: [],
-        dialogFormVisible: false,
-        formLabelWidth: '120px',
-        form: {
-          id: '',
-          title: '',
-          content: '',
-          readCount: '',
-          thumbsUpCount: '',
-          userId: ''
-        },
-        title: '添加用户'
+        articleId: '',
+        item: {}
       }
-
-    }
+    },
+    created: function () {
+      if (this.$route.params.articleId == null)
+        this.articleId = 1;
+      else
+        this.articleId = this.$route.params.articleId
+      this.axios.get('/api/article/' + this.articleId).then(response => {
+        if (response.data.code === 200) {
+          this.item = response.data.data;
+        } else {
+          console.log("http code not 200");
+        }
+      })
+    },
+    methods: {}
   }
+
 
 </script>
 
 <style scoped>
-  .bg-purple {
-    background: #d3dce6;
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
   }
 
-  .grid-content {
-    border-radius: 10px;
-    min-height: 120px;
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
   }
 </style>

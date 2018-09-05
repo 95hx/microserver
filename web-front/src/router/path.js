@@ -1,6 +1,11 @@
 const LIST_USER_PAGE_PATH = '/user_list'
 const LIST_ARTICLE_PAGE_PATH = '/article_list'
 const ARTICLE_DETAIL_PAGE_PATH = '/article_detail'
+const GET_MAIN_PAGE_PATH = '/'
+
+export function get_main_page_path() {
+  return GET_MAIN_PAGE_PATH;
+}
 
 export function get_list_user_page_path() {
   return LIST_USER_PAGE_PATH;
