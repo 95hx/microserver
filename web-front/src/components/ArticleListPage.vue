@@ -26,7 +26,7 @@
         <el-row :gutter="20" v-for="item in tableData">
           <el-col :span="16">
             <div class="grid-content bg-purple">
-              <el-button @click="articleDetailClick">{{item.title}}</el-button>
+              <el-button @click="articleDetailClick(item.id)">{{item.title}}</el-button>
               <p>{{item.content}}</p>
               <div>
                 <a href="https://www.baidu.com">{{item.readCount}}</a>
@@ -47,10 +47,11 @@
 
 <script>
   import {get_article_detail_page_path} from '../router/path'
+
   export default {
     methods: {
-      articleDetailClick: function () {
-        this.$router.push({path: get_article_detail_page_path()})
+      articleDetailClick: function (id) {
+        this.$router.push({name: get_article_detail_page_path(),params:{articleId:id}})
       },
       handleArticleClose(done) {
         this.$confirm('确认关闭？')
@@ -63,7 +64,7 @@
             console.log("close")
           });
       },
-      saveArticleClick: function(){
+      saveArticleClick: function () {
         this.axios.post('/api/article/add', {
           id: this.form.id,
           title: this.form.title,
@@ -87,7 +88,7 @@
           }
         })
       },
-      addArticleClick:function () {
+      addArticleClick: function () {
         this.title = '保存文章'
         this.form = {
           id: '',

@@ -9,17 +9,17 @@ export default new Router({
   routes: [
     {
       path: get_list_user_page_path(),
-      name: 'user_list',
+      name: '/user_list',
       component: UserList
     },
     {
       path: get_list_article_page_path(),
-      name: 'article_list',
+      name: '/article_list',
       component: ArticleList
     },
     {
       path: get_article_detail_page_path(),
-      name: 'article_detail',
+      name: '/article_detail',
       component: ArticleDetail
     }
   ]

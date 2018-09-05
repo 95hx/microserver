@@ -1,8 +1,7 @@
 <template>
   <div>
 
-    <!--添加文章按钮-->
-    <el-button type="primary" icon="el-icon-search" @click="addArticleClick">detail</el-button>
+
 
     <!--添加 文章dialog-->
     <el-dialog :title="title" :visible.sync="dialogFormVisible" :before-close="handleArticleClose">
@@ -101,10 +100,11 @@
     },
     created: function () {
       this.refreshArticle();
-      // console.log('hehe'+this.$route.params.ge)
+      console.log('hehe'+this.$route.params.articleId)
     },
     data() {
       return {
+        articleId: this.$route.params.articleId,
         tableData: [],
         dialogFormVisible: false,
         formLabelWidth: '120px',
