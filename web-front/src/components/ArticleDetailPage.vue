@@ -101,6 +101,7 @@
     },
     created: function () {
       this.refreshArticle();
+      // console.log('hehe'+this.$route.params.ge)
     },
     data() {
       return {
