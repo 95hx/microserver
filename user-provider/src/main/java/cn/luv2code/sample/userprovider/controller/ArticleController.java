@@ -46,12 +46,25 @@ public class ArticleController {
     }
 
     /**
+     * 查
+     */
+    @GetMapping("/{userId}/{page}/{size}")
+    public Result findAllByUserId(@PathVariable Long userId, @PathVariable Integer page, @PathVariable Integer size) {
+        return ResultUtils.success(articleService.findAllByUserId(new PageRequest(page - 1, size), userId));
+
+    }
+
+    /**
      * 增/更新
      */
     @PostMapping("/add")
     public Result add(@Valid @RequestBody ArticleDto articleDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return ResultUtils.error(ResultStatus.UNKNOWN_ERROR);
+        /**
+         * 目前userId全部设置为1
+          */
+        articleDto.setUserId(1L);
         articleService.save(articleDto);
         return ResultUtils.success();
     }

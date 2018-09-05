@@ -21,9 +21,9 @@ public class Article  extends BaseEntity {
     private String title;
     @Column
     private String content;
-    @Column
+    @Column(insertable = false ,columnDefinition = "int default '0'")
     private Integer readCount;
-    @Column
+    @Column(insertable = false ,columnDefinition = "int default '0'")
     private Integer thumbsUpCount;
 
     public Integer getThumbsUpCount() {

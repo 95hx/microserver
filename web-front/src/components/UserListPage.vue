@@ -2,10 +2,10 @@
   <div>
 
     <!--添加用户按钮-->
-    <el-button type="primary" icon="el-icon-search" @click="addClick">添加</el-button>
+    <el-button type="primary" icon="el-icon-search" @click="addUserClick">添加</el-button>
 
     <!--添加 用户dialog-->
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" :before-close="handleClose">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" :before-close="handleUserClose">
       <el-form :model="form">
         <el-form-item label="账号" :label-width="formLabelWidth">
           <el-input v-model="form.username" auto-complete="off"></el-input>
@@ -19,7 +19,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="saveUser">确 定</el-button>
+        <el-button type="primary" @click="saveUserClick">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -36,8 +36,8 @@
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button @click="deleteClick(scope.row)" type="text" size="small">删除</el-button>
-          <el-button @click="editClick(scope.row)" type="text" size="small">编辑</el-button>
+          <el-button @click="deleteUserClick(scope.row)" type="text" size="small">删除</el-button>
+          <el-button @click="editUserClick(scope.row)" type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -70,19 +70,19 @@
     },
 
     created: function () {
-      this.refresh();
+      this.refreshUser();
     },
 
     methods: {
 
-      editClick: function (row) {
+      editUserClick: function (row) {
         this.title = '编辑用户'
 
         this.dialogFormVisible = true
         this.form = JSON.parse(JSON.stringify(row));
       },
 
-      addClick: function () {
+      addUserClick: function () {
         this.title = '保存用户'
         this.form = {
           id: '',
@@ -93,16 +93,16 @@
         this.dialogFormVisible = true
       },
 
-      deleteClick: function (row) {
+      deleteUserClick: function (row) {
         this.axios.delete('/api/user/'+row.id).then(response => {
           if (response.data.code === 200) {
-            this.refresh()
+            this.refreshUser()
           } else {
           }
         })
       },
 
-      refresh: function () {
+      refreshUser: function () {
         this.axios.get('/api/user/all').then(response => {
           if (response.data.code === 200) {
             this.tableData = response.data.data
@@ -112,7 +112,7 @@
         })
       },
 
-      handleClose(done) {
+      handleUserClose(done) {
         this.$confirm('确认关闭？')
           .then(_ => {
             console.log("close")
@@ -125,16 +125,15 @@
       },
 
       //保存/更新 user
-      saveUser() {
+      saveUserClick() {
         this.axios.post('/api/user/add', {
           id: this.form.id,
-          username: this.form.username,
-          name: this.form.name,
-          age: this.form.age
+          title: this.form.title,
+          content: this.form.content,
         }).then(response => {
           if (response.data.code === 200) {
             console.log("success save")
-            this.refresh()
+            this.refreshUser()
           } else {
             console.log("http code not 200")
           }
