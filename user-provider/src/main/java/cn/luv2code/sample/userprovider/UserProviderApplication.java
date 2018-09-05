@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 //导入DynamicDataSourceRegister到容器
 @Import({DynamicDataSourceRegister.class})
 //WebApplicationInitializer is only needed if you are building a war file and deploying it
-public class UserProviderApplication extends SpringBootServletInitializer {
+public class UserProviderApplication  {
 
     public static void main(String[] args) {
         SpringApplication.run(UserProviderApplication.class, args);

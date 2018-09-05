@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableHystrix
-public class ConsumerMovieApplication extends SpringBootServletInitializer {
+public class ConsumerMovieApplication  {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
