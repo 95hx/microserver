@@ -128,8 +128,9 @@
       saveUserClick() {
         this.axios.post('/api/user/add', {
           id: this.form.id,
-          title: this.form.title,
-          content: this.form.content,
+          username: this.form.username,
+          name: this.form.name,
+          age: this.form.age
         }).then(response => {
           if (response.data.code === 200) {
             console.log("success save")
