@@ -19,8 +19,12 @@
         item: {}
       }
     },
+    /**
+     * 根据id获取文章详情
+     */
     created: function () {
       if (this.$route.params.articleId == null)
+        //默认1
         this.articleId = 1;
       else
         this.articleId = this.$route.params.articleId

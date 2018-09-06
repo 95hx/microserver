@@ -12,21 +12,18 @@
   export default {
     data() {
       return {
-        articleId: '',
-        item: {}
+
       }
     },
     created: function () {
     },
-    methods: {}
+    methods: {
+    }
   }
 
 
 </script>
 
 <style scoped>
-.img{
-  height: 10%;
-  width: 10%;
-}
+
 </style>

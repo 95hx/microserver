@@ -49,6 +49,9 @@
   import {get_article_detail_page_path} from '../router/path'
 
   export default {
+    /**
+     * 跳转到文章详情
+     */
     methods: {
       articleDetailClick: function (id) {
         this.$router.push({name: get_article_detail_page_path(),params:{articleId:id}})
