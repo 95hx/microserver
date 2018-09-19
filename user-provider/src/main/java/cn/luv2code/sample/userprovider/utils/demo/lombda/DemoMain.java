@@ -1,5 +1,4 @@
-package lombda;
-
+package cn.luv2code.sample.userprovider.utils.demo.lombda;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

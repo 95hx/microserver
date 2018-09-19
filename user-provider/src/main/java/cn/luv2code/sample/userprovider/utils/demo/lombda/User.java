@@ -1,4 +1,4 @@
-package lombda;
+package cn.luv2code.sample.userprovider.utils.demo.lombda;
 
 import java.util.List;
 
