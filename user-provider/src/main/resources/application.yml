@@ -31,7 +31,7 @@ eureka:
       meta1: test
       meta2: test
       meta3: test
-#logging:
+logging:
 #  level: off
-#  level:
-#    cn.luv2code.sample.userprovider.controller.UserController: INFO
+  level:
+    com.netflix: OFF

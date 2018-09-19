@@ -9,6 +9,7 @@ import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 //in redis need Serializable
@@ -31,12 +32,13 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp",updatable = false)
+    @Column(insertable = false, columnDefinition = "timestamp default current_timestamp", updatable = false)
     @CreationTimestamp
     private Date createTime;
-    @Column(insertable = false,columnDefinition = "timestamp default current_timestamp")
+    @Column(insertable = false, columnDefinition = "timestamp default current_timestamp")
     @UpdateTimestamp
     private Date updateTime;
+
     @Override
     public Long getId() {
         return id;
@@ -76,7 +78,8 @@ public class User extends BaseEntity {
     }
 
     public void setAge(Integer age) {
-        this.age = age;
+        this.age = Optional.ofNullable(age).orElse(new Integer(0));
+
     }
 
     public BigDecimal getBalance() {
