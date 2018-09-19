@@ -1,4 +1,4 @@
-package cn.luv2code.sample.userprovider;
+package cn.luv2code.sample.userprovider.utils.demo.utils;
 
 import cn.luv2code.sample.userprovider.entity.User;
 
