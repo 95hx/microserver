@@ -1,18 +1,18 @@
-package xin.icec.service.entity.prana;
+package cn.luv2code.sample.userprovider;
 
 import java.io.*;
 import java.util.Optional;
 
 /**
  * @author hx
- * @Title: TXT_DEAL
+ * @Title: TxtDeal
  * @ProjectName frame-root
  * @Description: TODO
  * @date 2018/9/1914:33
  */
-public class TXT_DEAL {
-    public static void main(String[] args) {
-        String string="";
+public class TxtDeal {
+    public static String main(String[] args) {
+        String string = "";
         try { // 防止文件建立或读取失败，用catch捕捉错误并打印，也可以throw
 
             /* 读入TXT文件 */
@@ -26,11 +26,12 @@ public class TXT_DEAL {
             BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
             String line = "";
             line = br.readLine();
+            string += line + "\n";
             while (line != null) {
                 line = br.readLine(); // 一次读入一行数据
-                string += line+"\n";
+                string += line + "\n";
             }
-            string=dealString(string);
+            string = dealString(string);
             /* 写入Txt文件 */
             File writename = new File("output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
             writename.createNewFile(); // 创建新文件
@@ -42,10 +43,14 @@ public class TXT_DEAL {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return string;
+
     }
 
-    private static String  dealString(String string) {
-
-        return string.substring(0,string.lastIndexOf("null"));
+    private static String dealString(String string) {
+        int aNull = string.lastIndexOf("null");
+        if (aNull != -1)
+            return string.substring(0, aNull);
+        return string;
     }
 }
