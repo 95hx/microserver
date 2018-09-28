@@ -84,7 +84,8 @@ public class DirFileScan {
     public static void main(String[] args) throws Exception{
 
         scanFilesWithNoRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
-        scanFilesWithRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
+        ArrayList arrayList=scanFilesWithRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
+        System.out.println();
     }
 }
 

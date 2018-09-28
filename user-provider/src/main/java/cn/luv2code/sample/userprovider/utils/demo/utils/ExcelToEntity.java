@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ExcelToEntity {
     public static void main(String[] args) {
-        String s = TxtDeal.main(new String[]{"user表.csv"});
+        String s = TxtDeal.main(new String("user表.csv"));
         List<User> users = dealUserCVS(s);
         System.out.println();
     }
