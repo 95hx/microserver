@@ -3,6 +3,7 @@ package cn.luv2code.sample.userprovider.utils.demo.utils;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.LinkedList;
+
 /**
  * @author hx
  * @Title: DirFileScan
@@ -12,17 +13,17 @@ import java.util.LinkedList;
  */
 public class DirFileScan {
 
-    private static ArrayList<Object> scanFiles = new ArrayList();
+    private static ArrayList<String> scanFiles = new ArrayList();
     private static LinkedList<File> queueFiles = new LinkedList();
 
 
     /**
-     * @apiNote 非递归扫描指定文件夹下面的指定文件
      * @param 路径
      * @return 文件
+     * @apiNote 非递归扫描指定文件夹下面的指定文件
      */
     // TODO: 2018/9/30 有bug
-    public static ArrayList<Object> scanFilesWithNoRecursion(String folderPath) throws Exception {
+    public static ArrayList<String> scanFilesWithNoRecursion(String folderPath) throws Exception {
         ArrayList<String> dirctorys = new ArrayList<String>();
         File directory = new File(folderPath);
         if (!directory.isDirectory()) {
@@ -45,11 +46,11 @@ public class DirFileScan {
     }
 
     /**
-     * @apiNote 递归扫描指定文件夹下面的指定文件
      * @param 路径
      * @return 文件
+     * @apiNote 递归扫描指定文件夹下面的指定文件
      */
-    public static ArrayList<Object> scanFilesWithRecursion(String folderPath) throws Exception {
+    public static ArrayList<String> scanFilesWithRecursion(String folderPath) throws Exception {
         File directory = new File(folderPath);
         if (!directory.isDirectory()) {
             throw new Exception('"' + folderPath + '"' + " input path is not a Directory , please input the right path of the Directory. ^_^...^_^");
@@ -88,10 +89,10 @@ public class DirFileScan {
     /**
      * @apiNote 测试主类
      */
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         ArrayList arrayList=scanFilesWithRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
-//        ArrayList arrayList=scanFilesWithNoRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
+//        ArrayList arrayList = scanFilesWithNoRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
         System.out.println();
     }
 }

@@ -12,6 +12,10 @@ import java.util.Optional;
  *
  */
 public class TxtDeal {
+
+    private static File outPutFile;
+    private static BufferedWriter out;
+
     public static void main(String[] args) {
         System.out.println(fileToString("C:\\Users\\18701\\Desktop\\resource\\need.txt"));
     }
@@ -63,14 +67,21 @@ public class TxtDeal {
      */
     private static void convertToFile(String string) throws IOException {
         /* 写入Txt文件 */
-        File writeName = new File("output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
-        if (!writeName.exists()) {
-            writeName.createNewFile(); // 创建新文件
+        // 相对路径，如果没有则要建立一个新的output。txt文件
+        if (outPutFile == null) {
+            outPutFile = new File("output.txt");
         }
-        BufferedWriter out = new BufferedWriter(new FileWriter(writeName));
+        if (out == null) {
+            out = new BufferedWriter(new FileWriter(outPutFile));
+        }
+
+
+        if (!outPutFile.exists()) {
+            outPutFile.createNewFile(); // 创建新文件
+        }
         out.append(string); // \r\n即为换行
         out.flush(); // 把缓存区内容压入文件
-        out.close(); // 最后记得关闭文件
+//        out.close(); // 最后记得关闭文件
     }
 
     /**
