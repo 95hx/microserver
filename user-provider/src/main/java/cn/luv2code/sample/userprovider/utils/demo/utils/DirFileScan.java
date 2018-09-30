@@ -3,7 +3,13 @@ package cn.luv2code.sample.userprovider.utils.demo.utils;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.LinkedList;
-
+/**
+ * @author hx
+ * @Title: DirFileScan
+ * @ProjectName micro-server-demo
+ * @Description: TODO
+ * @date 2018/9/1916:37
+ */
 public class DirFileScan {
 
     private static ArrayList<Object> scanFiles = new ArrayList();
@@ -11,11 +17,12 @@ public class DirFileScan {
 
 
     /**
-     * TODO:递归扫描指定文件夹下面的指定文件
-     *
-     * @return ArrayList<Object>
+     * @apiNote 非递归扫描指定文件夹下面的指定文件
+     * @param 路径
+     * @return 文件
      */
-    public static ArrayList<Object> scanFilesWithRecursion(String folderPath) throws Exception {
+    // TODO: 2018/9/30 有bug
+    public static ArrayList<Object> scanFilesWithNoRecursion(String folderPath) throws Exception {
         ArrayList<String> dirctorys = new ArrayList<String>();
         File directory = new File(folderPath);
         if (!directory.isDirectory()) {
@@ -24,11 +31,9 @@ public class DirFileScan {
         if (directory.isDirectory()) {
             File[] filelist = directory.listFiles();
             for (int i = 0; i < filelist.length; i++) {
-                /**如果当前是文件夹，进入递归扫描文件夹**/
+                /**如果当前是文件夹跳过**/
                 if (filelist[i].isDirectory()) {
-                    scanFilesWithNoRecursion(filelist[i].toString());
-                    /**递归扫描下面的文件夹**/
-                    scanFilesWithRecursion(filelist[i].getAbsolutePath());
+
                 }
                 /**非文件夹**/
                 else {
@@ -40,12 +45,11 @@ public class DirFileScan {
     }
 
     /**
-     * TODO:非递归方式扫描指定文件夹下面的所有文件
-     *
-     * @param folderPath 需要进行文件扫描的文件夹路径
-     * @return ArrayList<Object>
+     * @apiNote 递归扫描指定文件夹下面的指定文件
+     * @param 路径
+     * @return 文件
      */
-    public static ArrayList<Object> scanFilesWithNoRecursion(String folderPath) throws Exception {
+    public static ArrayList<Object> scanFilesWithRecursion(String folderPath) throws Exception {
         File directory = new File(folderPath);
         if (!directory.isDirectory()) {
             throw new Exception('"' + folderPath + '"' + " input path is not a Directory , please input the right path of the Directory. ^_^...^_^");
@@ -81,10 +85,13 @@ public class DirFileScan {
         return scanFiles;
     }
 
+    /**
+     * @apiNote 测试主类
+     */
     public static void main(String[] args) throws Exception{
 
-        scanFilesWithNoRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
         ArrayList arrayList=scanFilesWithRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
+//        ArrayList arrayList=scanFilesWithNoRecursion("C:\\Users\\18701\\Desktop\\供应链bug图片");
         System.out.println();
     }
 }

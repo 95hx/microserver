@@ -9,9 +9,19 @@ import java.util.Optional;
  * @ProjectName frame-root
  * @Description: TODO
  * @date 2018/9/1914:33
+ *
  */
 public class TxtDeal {
-    public static String main(String arg) {
+    public static void main(String[] args) {
+        System.out.println(fileToString("C:\\Users\\18701\\Desktop\\resource\\need.txt"));
+    }
+    /**
+     *
+     * @apiNote 文本内容提取为字符串
+     * @param arg 文件路径
+     * @return 字符串
+     */
+    public static String fileToString(String arg) {
         String string = "";
         try { // 防止文件建立或读取失败，用catch捕捉错误并打印，也可以throw
 
@@ -35,16 +45,8 @@ public class TxtDeal {
                 string = dealString(string);
                 System.out.println(string);
             }
+            convertToFile(string);
 
-            /* 写入Txt文件 */
-            File writename = new File("output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
-            if (!writename.exists()) {
-                writename.createNewFile(); // 创建新文件
-            }
-            BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-            out.append(string); // \r\n即为换行
-            out.flush(); // 把缓存区内容压入文件
-            out.close(); // 最后记得关闭文件
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,6 +55,30 @@ public class TxtDeal {
 
     }
 
+    /**
+     *
+     * @param string
+     * @throws IOException
+     * @apiNote string写入classpath 下的 output.txt
+     */
+    private static void convertToFile(String string) throws IOException {
+        /* 写入Txt文件 */
+        File writeName = new File("output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
+        if (!writeName.exists()) {
+            writeName.createNewFile(); // 创建新文件
+        }
+        BufferedWriter out = new BufferedWriter(new FileWriter(writeName));
+        out.append(string); // \r\n即为换行
+        out.flush(); // 把缓存区内容压入文件
+        out.close(); // 最后记得关闭文件
+    }
+
+    /**
+     *
+     * @param string
+     * @return 字符串
+     * @apiNote bug处理去掉结尾null    还是会多一个回车
+     */
     private static String dealString(String string) {
         int aNull = string.lastIndexOf("null");
         if (aNull != -1)

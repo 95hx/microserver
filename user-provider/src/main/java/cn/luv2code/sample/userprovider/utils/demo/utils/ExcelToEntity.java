@@ -15,11 +15,16 @@ import java.util.List;
  */
 public class ExcelToEntity {
     public static void main(String[] args) {
-        String s = TxtDeal.main(new String("user表.csv"));
+        String s = TxtDeal.fileToString(new String("user表.csv"));
         List<User> users = dealUserCVS(s);
         System.out.println();
     }
 
+    /**
+     *
+     * @param cvs字符串
+     * @return 实体list
+     */
     private static List<User> dealUserCVS(String s) {
         List<User> users = new ArrayList<>();
         String[] strings = s.split("\n");
