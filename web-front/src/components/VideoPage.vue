@@ -40,9 +40,9 @@
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
-            src: "http://192.168.27.103:6666/big_buck_bunny.mp4"
+            src: "http://127.0.0.1:6666/big_buck_bunny.mp4"
           }],
-          poster: "http://192.168.27.103:6666/container.png",
+          poster: "http://127.0.0.1:6666/container.png",
         }
       }
     },
