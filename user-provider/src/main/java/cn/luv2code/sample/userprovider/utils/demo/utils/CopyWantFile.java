@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * 复制指定目录的指定后缀文件到指定目录,文件名为原来目录位置(: \\ 分别用= ~替换 适用于windows)
+ * 备份指定目录的指定后缀文件到指定目录,文件名为原来目录位置(: \\ 分别用= ~替换 适用于windows)
  */
 public class CopyWantFile {
     private static ArrayList<String> needFiles = new ArrayList();
