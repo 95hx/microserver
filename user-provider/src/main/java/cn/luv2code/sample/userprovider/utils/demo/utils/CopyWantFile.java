@@ -13,18 +13,27 @@ import java.util.LinkedList;
 public class CopyWantFile {
     private static ArrayList<String> needFiles = new ArrayList();
     private static LinkedList<File> queueFiles = new LinkedList();
+
     public static void main(String[] args) throws Exception {
         //源目录
         ArrayList<String> strings = scanFilesWithRecursion("C:\\Users\\18701\\Desktop\\micro-server-demo");
-        for (String s:strings) {
+        for (String s : strings) {
             //目标目录
+            String outDir = "C:\\Users\\18701\\Desktop\\micro-server-demo\\user-provider\\trash\\";
+            File outFile = new File(outDir + s.replace("\\", "~").replace(":", "="));
+            File outDirFile = new File(outDir);
+            //不存在备份目录则创建
+            if (!outDirFile.exists()) {
+                outDirFile.mkdir();
+            }
 //            FileChannels拷贝大文件
-//            copyFileUsingFileStreams(new File(s),new File("C:\\Users\\18701\\Desktop\\micro-server-demo\\user-provider\\trash\\"+s.replace("\\","~").replace(":","=")));
+            copyFileUsingFileStreams(new File(s), outFile);
 //            Files.copy()
-            FileCopyUtils.copy(new File(s), new File("C:\\Users\\18701\\Desktop\\micro-server-demo\\user-provider\\trash\\"+s.replace("\\","~").replace(":","=")));
+//            FileCopyUtils.copy(new File(s), out);
         }
         System.out.println();
     }
+
     public static ArrayList<String> scanFilesWithRecursion(String folderPath) throws Exception {
         File directory = new File(folderPath);
         if (!directory.isDirectory()) {
@@ -67,6 +76,7 @@ public class CopyWantFile {
 
     /**
      * 复制文件source到dest
+     *
      * @param source
      * @param dest
      * @throws IOException
@@ -80,7 +90,7 @@ public class CopyWantFile {
             output = new FileOutputStream(dest);
             byte[] buf = new byte[1024];
             int bytesRead;
-            while ((bytesRead = input.read(buf))!= -1) {
+            while ((bytesRead = input.read(buf)) != -1) {
                 output.write(buf, 0, bytesRead);
                 output.flush();
             }
