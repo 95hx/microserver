@@ -42,6 +42,7 @@
             type: "video/mp4",
             src: "http://127.0.0.1:6666/big_buck_bunny.mp4"
           }],
+          //edge 可以访问6666端口 google 报错:ERR_UNSAFE_PORT 应避免类似端口
           poster: "http://127.0.0.1:6666/container.png",
         }
       }
