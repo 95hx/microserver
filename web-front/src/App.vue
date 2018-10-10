@@ -8,6 +8,7 @@
             <el-menu-item-group>
               <el-menu-item index="1-1" @click="userItemClick">用户</el-menu-item>
               <el-menu-item index="1-2" @click="articleItemClick">文章</el-menu-item>
+              <el-menu-item index="1-3" @click="videoClick">视频</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-  import {get_list_article_page_path,get_list_user_page_path,get_main_page_path} from './router/path'
+  import {get_list_article_page_path,get_list_user_page_path,get_main_page_path,get_video_path} from './router/path'
   export default {
     methods: {
       mainPage:function () {
@@ -47,6 +48,9 @@
       },
       articleItemClick: function () {
         this.$router.push({path: get_list_article_page_path()})
+      },
+      videoClick: function () {
+        this.$router.push({path: get_video_path()})
       }
     }
   };
