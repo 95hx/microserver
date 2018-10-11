@@ -23,7 +23,7 @@
     <!--table column-->
     <el-container>
       <el-footer>
-        <el-row :gutter="20" v-for="item in tableData">
+        <el-row :gutter="20" v-for="item in tableData" v-loading="loading">
           <el-col :span="16">
             <div class="grid-content bg-purple">
               <el-button @click="articleDetailClick(item.id)">{{item.title}}</el-button>
@@ -54,7 +54,7 @@
      */
     methods: {
       articleDetailClick: function (id) {
-        this.$router.push({name: get_article_detail_page_path(),params:{articleId:id}})
+        this.$router.push({name: get_article_detail_page_path(), params: {articleId: id}})
       },
       handleArticleClose(done) {
         this.$confirm('确认关闭？')
@@ -86,6 +86,8 @@
         this.axios.get('/api/article/all').then(response => {
           if (response.data.code === 200) {
             this.tableData = response.data.data;
+            this.loading = false;
+            console.log("http code is 200")
           } else {
             console.log("http code not 200");
           }
@@ -110,6 +112,7 @@
     data() {
       return {
         tableData: [],
+        loading: true,
         dialogFormVisible: false,
         formLabelWidth: '120px',
         form: {

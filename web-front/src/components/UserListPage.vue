@@ -24,7 +24,7 @@
     </el-dialog>
 
     <!--table column-->
-    <el-table :data="tableData">
+    <el-table :data="tableData" v-loading="loading">
       <el-table-column prop="username" label="账号" width="140">
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="120">
@@ -59,6 +59,7 @@
         tableData: Array(20).fill(item),
         dialogFormVisible: false,
         formLabelWidth: '120px',
+        loading: true ,
         form: {
           id: '',
           name: '',
@@ -106,6 +107,8 @@
         this.axios.get('/api/user/all').then(response => {
           if (response.data.code === 200) {
             this.tableData = response.data.data
+            this.loading = false;
+            console.log("http code is 200");
           } else {
             console.log("http code not 200");
           }
