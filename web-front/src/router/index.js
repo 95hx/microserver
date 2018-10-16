@@ -5,7 +5,8 @@ import ArticleList from '@/components/ArticleListPage'
 import ArticleDetail from '@/components/ArticleDetailPage'
 import Video from '@/components/VideoPage.vue'
 import Main from '@/components/MainPage'
-import {get_list_user_page_path, get_list_article_page_path, get_article_detail_page_path,get_main_page_path,get_video_path} from './path'
+import Login from '@/components/LoginPage'
+import {get_list_user_page_path, get_list_article_page_path, get_article_detail_page_path,get_main_page_path,get_video_path,get_login_path} from './path'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -33,6 +34,11 @@ export default new Router({
       path: get_video_path(),
       name: '/video',
       component: Video
+    },
+    {
+      path: get_login_path(),
+      name: '/login',
+      component: Login
     }
   ]
 })

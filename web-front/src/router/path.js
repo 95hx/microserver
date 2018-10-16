@@ -3,6 +3,7 @@ const LIST_ARTICLE_PAGE_PATH = '/article_list'
 const ARTICLE_DETAIL_PAGE_PATH = '/article_detail'
 const VIDEO_PATH = '/video'
 const GET_MAIN_PAGE_PATH = '/'
+const LOGIN_PATH = '/login'
 
 export function get_main_page_path() {
   return GET_MAIN_PAGE_PATH;
@@ -19,4 +20,7 @@ export function get_article_detail_page_path() {
 }
 export function get_video_path() {
   return VIDEO_PATH;
+}
+export function get_login_path() {
+  return LOGIN_PATH;
 }

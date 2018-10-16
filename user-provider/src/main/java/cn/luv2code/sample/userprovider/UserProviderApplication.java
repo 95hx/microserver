@@ -2,20 +2,16 @@ package cn.luv2code.sample.userprovider;
 
 import cn.luv2code.sample.userprovider.config.DataSourceBuilder;
 import cn.luv2code.sample.userprovider.config.DynamicDataSourceRegister;
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.realm.text.IniRealm;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -66,21 +62,6 @@ public class UserProviderApplication {
         DefaultSecurityManager manager = new DefaultSecurityManager(realm);
         manager.setRealm(realm);
         return manager;
-    }
-
-    @Bean
-    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-        DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-
-        // logged in users with the 'admin' role
-        chainDefinition.addPathDefinition("/article/**", "authc, roles[admin]");
-
-        // logged in users with the 'document:read' permission
-        chainDefinition.addPathDefinition("/user/**", "authc, perms[user:all]");
-
-        // all other paths require a logged in user
-        chainDefinition.addPathDefinition("/**", "authc");
-        return chainDefinition;
     }
 
     public HikariDataSource buildDataSource(Map<String, Object> dsMap) {
