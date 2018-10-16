@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
 
+import javax.xml.crypto.Data;
+
 /**
  * 动态数据源注册
  */
@@ -78,17 +80,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      * 创建datasource.
      */
     public HikariDataSource buildDataSource(Map<String, Object> dsMap) {
-
-        String driverClassName = dsMap.get("driver-class-name").toString();
-        String url = dsMap.get("url").toString();
-        String username = dsMap.get("username").toString();
-        String password = dsMap.get("password").toString();
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName(driverClassName);
-        config.setJdbcUrl(url);
-        config.setUsername(username);
-        config.setPassword(password);
-        return new HikariDataSource(config);
+        return DataSourceBuilder.getHikariDataSource(dsMap);
     }
 
 

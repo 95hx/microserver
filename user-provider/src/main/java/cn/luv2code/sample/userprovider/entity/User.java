@@ -18,6 +18,8 @@ public class User extends BaseEntity {
     @Column
     private String username;
     @Column
+    private String password;
+    @Column
     private String name;
     @Column
     private Integer age;
@@ -105,8 +107,17 @@ public class User extends BaseEntity {
         return updateTime;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public void setUpdateTime(Date updateTime) {
+
         this.updateTime = updateTime;
     }
 }
