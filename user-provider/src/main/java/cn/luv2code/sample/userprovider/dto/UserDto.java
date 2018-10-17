@@ -8,6 +8,7 @@ public class UserDto {
     private Long id;
 
     private String username;
+    private String password;
     private String name;
     private Integer age;
     private BigDecimal balance;
@@ -68,6 +69,14 @@ public class UserDto {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public BigDecimal getBalance() {

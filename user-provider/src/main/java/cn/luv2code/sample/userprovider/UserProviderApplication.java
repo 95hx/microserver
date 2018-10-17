@@ -7,11 +7,13 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.realm.text.IniRealm;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -25,6 +27,7 @@ import java.util.Map;
 @SpringBootApplication
 //导入DynamicDataSourceRegister到容器
 @Import({DynamicDataSourceRegister.class})
+@EnableCaching
 //WebApplicationInitializer is only needed if you are building a war file and deploying it
 public class UserProviderApplication {
 

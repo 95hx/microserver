@@ -23,7 +23,7 @@
     <!--table column-->
     <el-container>
       <el-footer>
-        <el-row :gutter="20" v-for="item in tableData" v-loading="loading">
+        <el-row :gutter="20" v-for="item in tableData"  :key="item.id" v-loading="loading">
           <el-col :span="16">
             <div class="grid-content bg-purple">
               <el-button @click="articleDetailClick(item.id)">{{item.title}}</el-button>

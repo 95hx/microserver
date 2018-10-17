@@ -5,6 +5,7 @@ import cn.luv2code.sample.userprovider.service.ArticleService;
 import cn.luv2code.sample.userprovider.utils.Result;
 import cn.luv2code.sample.userprovider.utils.ResultStatus;
 import cn.luv2code.sample.userprovider.utils.ResultUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.DefaultApplicationArguments;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/article")
+@RequiresRoles("admin")
 public class ArticleController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
     @Resource
